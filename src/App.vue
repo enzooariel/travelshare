@@ -8,7 +8,6 @@ const router = useRouter()
 const route = useRoute()
 const user = ref(null)
 
-// Computar la ruta activa
 const currentRoute = computed(() => route.path)
 
 onMounted(() => {
@@ -29,11 +28,9 @@ const handleLogout = async () => {
 
 <template>
   <div class="min-h-screen bg-gray-50">
-    <!-- Navbar con sombra más suave y mejor contraste -->
     <nav class="bg-white shadow-md border-b border-gray-100 sticky top-0 z-50">
       <div class="container mx-auto px-4 py-4">
         <div class="flex justify-between items-center">
-          <!-- Logo con mejor estilo -->
           <router-link 
             to="/" 
             class="text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors duration-200"
@@ -42,7 +39,6 @@ const handleLogout = async () => {
           </router-link>
           
           <div class="flex items-center space-x-8">
-            <!-- Enlaces públicos -->
             <router-link 
               to="/posts"
               class="relative group"
@@ -53,14 +49,12 @@ const handleLogout = async () => {
               ]"
             >
               Explorar
-              <!-- Indicador de página activa -->
               <div 
                 class="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200"
                 :class="{ 'scale-x-100': currentRoute === '/posts' }"
               ></div>
             </router-link>
 
-            <!-- Enlaces para usuarios autenticados -->
             <template v-if="user">
               <router-link 
                 to="/create-post"
@@ -96,7 +90,6 @@ const handleLogout = async () => {
               </div>
             </template>
 
-            <!-- Enlaces para usuarios no autenticados -->
             <template v-else>
               <router-link 
                 to="/login"
@@ -121,17 +114,3 @@ const handleLogout = async () => {
     <router-view></router-view>
   </div>
 </template>
-
-<style>
-/* Estilos adicionales para animaciones suaves */
-.router-link-active {
-  position: relative;
-}
-
-/* Transiciones para hover y estados activos */
-.transition-all {
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 200ms;
-}
-</style>

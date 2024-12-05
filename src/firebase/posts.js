@@ -2,7 +2,6 @@
 import { doc, updateDoc, arrayUnion, arrayRemove, getDoc, deleteDoc } from 'firebase/firestore';
 import { db } from './config';
 
-// Funciones existentes anteriores
 export const toggleLike = async (postId, userId) => {
   const postRef = doc(db, 'posts', postId);
   const postDoc = await getDoc(postRef);
@@ -35,7 +34,6 @@ export const addComment = async (postId, userId, userName, content) => {
   return comment;
 };
 
-// NUEVAS FUNCIONES que agregamos 👇
 export const deletePost = async (postId) => {
   try {
     await deleteDoc(doc(db, 'posts', postId));
